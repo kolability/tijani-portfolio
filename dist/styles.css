@@ -43,7 +43,7 @@ h1{font-size:48px;line-height:52.8px;letter-spacing:-1.5px;font-weight:500;margi
 .work-eight img{position:absolute;width:42.67%;height:95.94%;left:33.67%;top:5.74%}
 .work-nine>img{position:absolute;width:416px;height:290px;left:-93px;top:-.13px}
 @keyframes ticker{to{transform:translateX(-50%)}}
-.trusted{padding:32px 0;background:#fff;display:flex;flex-direction:column;gap:20px;overflow:hidden}
+.trusted{padding:64px 0;background:#fff;display:flex;flex-direction:column;gap:20px;overflow:hidden}
 .trusted h2{margin:0;color:#343434;font-size:12px;font-weight:400;line-height:16px;text-align:center}
 .logo-ticker{width:100%;overflow:hidden}
 .logo-track{display:flex;width:max-content;padding-left:56px;animation:logo-ticker var(--logo-duration,52s) 1s linear infinite}
