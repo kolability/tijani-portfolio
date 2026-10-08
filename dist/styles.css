@@ -1,4 +1,5 @@
 @font-face{font-family:Inter;src:url('assets/inter.ttf') format('truetype');font-style:normal;font-weight:500;font-display:swap}
+@font-face{font-family:Inter;src:url('assets/inter-semibold.ttf') format('truetype');font-style:normal;font-weight:600;font-display:swap}
 @font-face{font-family:Inter;src:url('assets/inter-regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
 @font-face{font-family:'Google Sans Flex';src:url('assets/google-sans-flex.ttf') format('truetype');font-style:normal;font-weight:500;font-display:swap}
 :root{font-family:Inter,Arial,sans-serif;color:#1b1b1b;background:#fbf9f0;font-weight:500;font-synthesis:none;scroll-behavior:smooth;scroll-padding-top:84px}
@@ -87,6 +88,13 @@ h1{font-size:48px;line-height:52.8px;letter-spacing:-1.5px;font-weight:500;margi
 .about-text h2{margin:0;font-size:48px;font-weight:500;line-height:64px;letter-spacing:-1.3845px}
 .about-body{display:flex;flex-direction:column;gap:22.152px;font-size:14.768px;font-weight:500;line-height:22.152px;letter-spacing:-.4615px}
 .about-body p{margin:0}
+.site-footer{display:flex;flex-direction:column;align-items:center;background:#000;padding:96px 24px 48px}
+.footer-name{margin:0;height:148px;color:rgb(237 237 237 / 70%);font-size:clamp(32px,9.444444vw,136px);font-weight:600;line-height:160px;letter-spacing:-.0378em;text-align:center;white-space:nowrap}
+.footer-links{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:24px;padding-top:64px;color:#888;font-size:13px;line-height:19.5px;font-weight:400}
+.footer-links a:hover{color:#ededed;text-decoration:underline;text-underline-offset:4px}
+.footer-links a:focus-visible{outline-color:#f2e84e}
+@media(max-width:1100px){.footer-name{height:auto;line-height:1.17647}.site-footer{padding-top:72px}}
+@media(max-width:700px){.site-footer{padding:56px 16px 32px}.footer-name{font-size:9.2vw}.footer-links{padding-top:40px;gap:24px}}
 .about-email{width:auto;height:auto;padding:12px 16px}
 .about-portrait{display:block;width:100%;height:auto;aspect-ratio:687/749.702;object-fit:cover;border-radius:11.884px}
 @media(max-width:1100px){.about-section{gap:48px;padding:80px 5vw}.about-copy{gap:40px}}
