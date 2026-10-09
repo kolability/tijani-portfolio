@@ -99,3 +99,32 @@ h1{font-size:48px;line-height:52.8px;letter-spacing:-1.5px;font-weight:500;margi
 .about-portrait{display:block;width:100%;height:auto;aspect-ratio:687/749.702;object-fit:cover;border-radius:11.884px}
 @media(max-width:1100px){.about-section{gap:48px;padding:80px 5vw}.about-copy{gap:40px}}
 @media(max-width:700px){.about-section{grid-template-columns:1fr;gap:40px;padding:64px 22px}.about-text{padding-top:0}.about-text h2{font-size:40px;line-height:52px}.about-body{font-size:16px;line-height:24px;gap:24px}.about-copy{gap:32px}}
+
+.reviews-section{padding:96px 56px 104px;background:#f2f0e7;color:#1b1b1b;border-top:1px solid #dedcd3}
+.reviews-header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:56px}
+.reviews-eyebrow{margin:0 0 16px;font-size:14px;font-weight:400;color:#66645e}
+.reviews-header h2{margin:0;font-size:48px;line-height:1.15;font-weight:500;letter-spacing:-1.4px}
+.reviews-count{font-size:14px;font-weight:400;font-variant-numeric:tabular-nums;color:#74716a;white-space:nowrap}
+#review-number{color:#1b1b1b}
+.reviews-stage{display:grid;grid-template-columns:180px minmax(0,1fr);gap:48px;margin-bottom:64px}
+.review-quote-mark{font-size:200px;line-height:1;letter-spacing:-12px;color:#1b1b1b;font-weight:500;position:relative;isolation:isolate}
+.review-quote-mark::before{content:"";position:absolute;top:30px;left:0;width:100px;height:100px;border-radius:50%;background:#f2e84e;z-index:-1}
+.review-panels{display:grid;align-items:start}
+.review-panel{grid-area:1/1;visibility:hidden;opacity:0;transform:translateY(12px);transition:opacity .35s ease,transform .4s ease,visibility .4s;pointer-events:none}
+.review-panel.is-active{visibility:visible;opacity:1;transform:translateY(0);pointer-events:auto}
+.review-panel blockquote{margin:0;font-size:clamp(24px,2.7vw,40px);line-height:1.4;font-weight:400;letter-spacing:-.025em;max-width:1100px}
+.review-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.review-tab{position:relative;display:flex;align-items:flex-start;gap:16px;text-align:left;padding:24px 12px 12px 0;background:transparent;color:#65635d;border-top:2px solid #ceccc3;transition:color .2s,border-color .2s}
+.review-tab::before{content:"";position:absolute;top:-2px;left:0;right:0;height:2px;background:#1b1b1b;transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.review-tab[aria-selected=true]::before{transform:scaleX(1)}
+.review-tab:hover,.review-tab[aria-selected=true]{color:#1b1b1b}
+.review-tab:hover{border-color:#848177}
+.review-tab-number{font-size:13px;line-height:24px;font-weight:400;font-variant-numeric:tabular-nums}
+.review-person{display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+.review-person-name{font-size:17px;line-height:24px;font-weight:500}
+.review-person-role{font-size:14px;line-height:21px;font-weight:400}
+.review-tab-dot{width:12px;height:12px;flex-shrink:0;margin-top:6px;border:1px solid #aaa79e;border-radius:50%;transition:background .2s,transform .2s}
+.review-tab[aria-selected=true] .review-tab-dot{background:#f2e84e;border-color:#1b1b1b;transform:scale(1.15)}
+@media(max-width:1100px){.reviews-section{padding:80px 5vw}.reviews-stage{grid-template-columns:100px minmax(0,1fr);gap:32px}.review-quote-mark{font-size:150px}.review-quote-mark::before{width:75px;height:75px;top:24px}.review-tabs{gap:16px}.review-tab{gap:10px}.review-person-name{font-size:16px}}
+@media(max-width:700px){.reviews-section{padding:64px 22px}.reviews-header{margin-bottom:36px;align-items:center}.reviews-header h2{font-size:36px;letter-spacing:-1px}.reviews-eyebrow{margin-bottom:12px}.reviews-stage{display:block;margin-bottom:40px}.review-quote-mark{display:block;height:68px;font-size:100px;letter-spacing:-6px;margin-bottom:16px}.review-quote-mark::before{width:50px;height:50px;top:12px}.review-panel blockquote{font-size:24px;line-height:1.45}.review-tabs{grid-template-columns:1fr;gap:0}.review-tab{padding:20px 4px;gap:16px}.review-person{gap:4px}.review-person-name{font-size:16px}.review-person-role{font-size:14px}.reviews-count{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.review-panel,.review-tab,.review-tab::before,.review-tab-dot{transition:none;transform:none}}
