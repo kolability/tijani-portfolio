@@ -93,50 +93,57 @@ reviewTabs.forEach((tab, index) => {
   });
 });
 
-// Reveal content once on arrival, with pointer and keyboard entry support.
-// Content stays readable if animation or observation is unavailable.
-const sectionReveals = [
-  ['.trusted', '.trusted h2, .logo-ticker'],
+// Choreograph text and media separately, keeping native scrolling intact.
+const motionTargets = [];
+const motionGroups = [
+  ['.intro', 'h1, p, .pill'],
+  ['.trusted', 'h2, .logo-ticker'],
   ['.work-categories', '.work-category'],
-  ['.about-section', '.about-copy, .about-portrait'],
-  ['.reviews-section', '.reviews-header, .reviews-stage, .review-tabs'],
+  ['.about-section', 'h2, .about-body p, .about-email, .about-portrait'],
+  ['.reviews-section', '.reviews-header, .reviews-stage, .review-tab'],
   ['.site-footer', '.footer-name, .footer-links']
 ];
-const revealedContent = new WeakSet();
-const revealAnimations = new Set();
-function revealContent(element, delay = 0) {
-  if (revealedContent.has(element)) return;
-  revealedContent.add(element);
-  if (reducedMotion.matches || !element.animate) return;
-  const animation = element.animate([
-    { opacity: 0, translate: '0 16px' },
-    { opacity: 1, translate: '0 0' }
-  ], { duration: 650, delay, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' });
-  revealAnimations.add(animation);
-  animation.finished.catch(() => {}).finally(() => revealAnimations.delete(animation));
+const entranceAnimations = new Map();
+let motionObserver;
+function finishEntrance(element) {
+  entranceAnimations.get(element)?.cancel();
+  entranceAnimations.delete(element);
+  element.classList.remove('motion-pending');
+  motionObserver?.unobserve(element);
 }
-const contentObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    revealContent(entry.target);
-    contentObserver.unobserve(entry.target);
+function enter(element, delay = 0) {
+  if (!element.classList.contains('motion-pending')) return;
+  if (reducedMotion.matches || !element.animate) return finishEntrance(element);
+  const media = element.matches('.work-category, .about-portrait');
+  element.classList.remove('motion-pending');
+  motionObserver?.unobserve(element);
+  const animation = element.animate([
+    { opacity: 0, translate: `0 ${media ? 64 : 32}px`, scale: media ? '.96' : '1', filter: media ? 'blur(0px)' : 'blur(5px)' },
+    { opacity: 1, translate: '0 0', scale: '1', filter: 'blur(0px)' }
+  ], { duration: media ? 1150 : 900, delay, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' });
+  entranceAnimations.set(element, animation);
+  animation.finished.catch(() => {}).finally(() => entranceAnimations.delete(element));
+}
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
+  motionObserver = new IntersectionObserver(entries => {
+    const arriving = entries.filter(entry => entry.isIntersecting);
+    arriving.forEach((entry, index) => enter(entry.target, Math.min(index * 95, 285)));
+  }, { threshold: .06, rootMargin: '0px 0px -5% 0px' });
+  motionGroups.forEach(([sectionSelector, targetSelector]) => {
+    const section = document.querySelector(sectionSelector);
+    section.querySelectorAll(targetSelector).forEach(element => {
+      motionTargets.push(element);
+      element.classList.add('motion-pending');
+      motionObserver.observe(element);
+    });
+    section.addEventListener('focusin', () => {
+      motionTargets.filter(element => section.contains(element)).forEach(finishEntrance);
+    });
   });
-}, { threshold: .08 }) : null;
-sectionReveals.forEach(([sectionSelector, contentSelector]) => {
-  const section = document.querySelector(sectionSelector);
-  const content = [...document.querySelectorAll(contentSelector)];
-  content.forEach(element => contentObserver?.observe(element));
-  section.addEventListener('pointerenter', () => {
-    content.filter(element => {
-      const box = element.getBoundingClientRect();
-      return box.top < innerHeight && box.bottom > 0;
-    }).forEach((element, index) => revealContent(element, index * 70));
-  }, { once: true });
-  section.addEventListener('focusin', () => {
-    content.forEach(element => revealedContent.add(element));
-    revealAnimations.forEach(animation => animation.cancel());
-  });
-});
+}
 reducedMotion.addEventListener('change', () => {
-  if (reducedMotion.matches) revealAnimations.forEach(animation => animation.cancel());
+  if (reducedMotion.matches) motionTargets.forEach(finishEntrance);
+});
+window.addEventListener('pageshow', event => {
+  if (event.persisted) motionTargets.forEach(finishEntrance);
 });
