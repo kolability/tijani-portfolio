@@ -129,3 +129,7 @@ h1{font-size:48px;line-height:52.8px;letter-spacing:-1.5px;font-weight:500;margi
 @media(max-width:1100px){.reviews-section{padding:80px 5vw}.reviews-stage{grid-template-columns:100px minmax(0,1fr);gap:32px}.review-quote-mark{font-size:150px}.review-quote-mark::before{width:75px;height:75px;top:24px}.review-tabs{gap:16px}.review-tab{gap:10px}.review-person-name{font-size:16px}}
 @media(max-width:700px){.reviews-section{padding:64px 22px}.reviews-header{margin-bottom:36px;align-items:center}.reviews-header h2{font-size:36px;letter-spacing:-1px}.reviews-eyebrow{margin-bottom:12px}.reviews-stage{display:block;margin-bottom:40px}.review-quote-mark{display:block;height:68px;font-size:100px;letter-spacing:-6px;margin-bottom:16px}.review-quote-mark::before{width:50px;height:50px;top:12px}.review-panel blockquote{font-size:24px;line-height:1.45}.review-tabs{grid-template-columns:1fr;gap:0}.review-tab{padding:20px 4px;gap:16px}.review-person{gap:4px}.review-person-name{font-size:16px}.review-person-role{font-size:14px}.reviews-count{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.review-panel,.review-tab,.review-tab::before,.review-tab-dot{transition:none;transform:none}}
+
+.nav-links a,.nav-links button{transition:color .2s ease;text-decoration-color:transparent;text-underline-offset:4px}
+.nav-links a:hover,.nav-links button:hover,.nav-links a:focus-visible,.nav-links button:focus-visible{color:#67645c;text-decoration:underline;text-decoration-color:currentColor}
+@media(prefers-reduced-motion:reduce){.nav-links a,.nav-links button{transition:none}}
