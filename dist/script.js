@@ -11,7 +11,9 @@ const logoGroup = logoTrack.firstElementChild;
 
 function matchTickerSpeed() {
   // Match visible pixels per second, including the hero's mobile scaling.
-  const heroSpeed = heroGroup.getBoundingClientRect().width / 51.2;
+  const duration = heroGroup.offsetWidth / (3401 / 51.2);
+  heroGroup.parentElement.style.setProperty('--hero-duration', `${duration}s`);
+  const heroSpeed = heroGroup.getBoundingClientRect().width / duration;
   const logoWidth = logoGroup.getBoundingClientRect().width;
   logoTrack.style.setProperty('--logo-duration', `${logoWidth / heroSpeed}s`);
   logoTrack.style.setProperty('--logo-distance', `${-logoWidth}px`);
