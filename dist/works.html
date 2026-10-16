@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" class="works-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Works — Tijani Sulaimon</title>
+  <meta name="description" content="Explore Tijani Sulaimon’s brand identity, campaigns, video and photography projects.">
+  <link rel="icon" href="assets/favicon-tijani.png" type="image/png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="works.css">
+  <script src="site-nav.js" defer></script>
+  <script src="works.js" defer></script>
+</head>
+<body class="works-page">
+<a class="skip-link" href="#portfolio">Skip to projects</a>
+  <header class="navigation">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a class="identity" href="index.html"><span>Tijani Sulaimon</span></a>
+      <div class="nav-links">
+        <a href="works.html" aria-current="page">My Works</a>
+        <a href="index.html#about">About Me</a>
+        <a href="https://drive.google.com/file/d/1GhK-0IV3mqhZmeDf3vhK-c3E5dF5t-OE/view?usp=sharing" target="_blank" rel="noopener noreferrer">My Resume</a>
+      </div>
+      <a class="pill" href="mailto:sulaimonsheutijani@gmail.com">Get in touch</a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+    </nav>
+  </header>
+  <dialog class="mobile-menu" id="mobile-menu" aria-label="Navigation menu">
+    <div class="menu-heading"><span>Explore</span><button class="menu-close" type="button" aria-label="Close menu">×</button></div>
+    <nav aria-label="Mobile navigation">
+      <a href="works.html" aria-current="page">My Works</a>
+      <a href="index.html#about">About Me</a>
+      <a href="https://drive.google.com/file/d/1GhK-0IV3mqhZmeDf3vhK-c3E5dF5t-OE/view?usp=sharing" target="_blank" rel="noopener noreferrer">My Resume</a>
+      <a class="pill" href="mailto:sulaimonsheutijani@gmail.com">Get in touch</a>
+    </nav>
+  </dialog>
+
+<main id="portfolio" tabindex="-1">
+  <div id="portfolio-view"></div>
+  <noscript><div class="works-intro"><h1>My Works</h1><p>Please enable JavaScript to browse the project collections.</p><a href="index.html">Back to home</a></div></noscript>
+</main>
+<dialog class="image-viewer" aria-label="Project image viewer">
+  <div class="viewer-toolbar"><p id="viewer-caption"></p><button class="viewer-close" type="button" aria-label="Close image viewer">Close <span aria-hidden="true">×</span></button></div>
+  <div class="viewer-image"></div>
+  <div class="viewer-controls"><button type="button" id="previous-image">Previous</button><span id="viewer-position" aria-live="polite"></span><button type="button" id="next-image">Next</button></div>
+</dialog>
+  <footer class="site-footer" id="footer">
+    <p class="footer-name">Sheu Tijani Sulaimon</p>
+    <nav class="footer-links" aria-label="Contact and social links">
+      <a href="mailto:sulaimonsheutijani@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/sheutijanisulaimon" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.instagram.com/teejaymedia_?stkn=M3VlZmwxMXFnN2pq" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://pin.it/i8PXEJgxr" target="_blank" rel="noopener noreferrer">Pinterest</a>
+    </nav>
+  </footer>
+</body>
+</html>
