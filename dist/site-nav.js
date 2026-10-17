@@ -51,3 +51,29 @@ mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', 
 mobileBreakpoint.addEventListener('change', () => { if (!mobileBreakpoint.matches) closeMenu(false); });
 
 })();
+
+// Photography is not available yet; share the same feedback on every page.
+(() => {
+  let toast = document.querySelector('.site-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'site-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.setAttribute('aria-atomic', 'true');
+    document.body.append(toast);
+  }
+  let timeout;
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+    const destination = new URL(link.href, location.href);
+    if (destination.origin !== location.origin || destination.searchParams.get('category') !== 'photography') return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    clearTimeout(timeout);
+    toast.textContent = 'Work in progress. Please check back soon.';
+    toast.classList.add('is-visible');
+    timeout = setTimeout(() => toast.classList.remove('is-visible'), 4000);
+  }, true);
+})();

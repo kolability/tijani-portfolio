@@ -18,6 +18,7 @@
     { id: 'photography-collection', title: 'Photography collection', category: 'photography', initials: '01', tone: 'clay', assets: placeholderAssets(6, 'Photograph') }
   ];
   const campaignGallery = { title: 'Marketing & campaigns', initials: '', tone: 'slate', assets: [{"src": "assets/campaign-01.png", "alt": "Portugal and Nigeria match day poster", "label": "Portugal and Nigeria match day poster", "displayRatio": "4 / 5"}, {"src": "assets/campaign-05.png", "alt": "Microbit September campaign", "label": "Microbit September campaign", "displayRatio": "4 / 5"}, {"src": "assets/campaign-08.png", "alt": "Al-Hikmah alumni reunion flyer", "label": "Al-Hikmah alumni reunion flyer", "displayRatio": "4 / 5"}, {"src": "assets/campaign-09.png", "alt": "Osteve travel campaign", "label": "Osteve travel campaign", "displayRatio": "4 / 5"}, {"src": "assets/campaign-14.png", "alt": "Anisha personal shopper flyer", "label": "Anisha personal shopper flyer", "displayRatio": "4 / 5"}, {"src": "assets/campaign-20.png", "alt": "Single Pringles Night event flyer", "label": "Single Pringles Night event flyer", "displayRatio": "4 / 5"}, {"src": "assets/campaign-15.png", "alt": "Poland versus Nigeria match poster", "label": "Poland versus Nigeria match poster", "displayRatio": "4 / 5"}, {"src": "assets/campaign-16.png", "alt": "Super Eagles squad announcement", "label": "Super Eagles squad announcement", "displayRatio": "4 / 5"}, {"src": "assets/campaign-02.png", "alt": "Spectrum TV Christmas greeting", "label": "Spectrum TV Christmas greeting", "displayRatio": "1 / 1"}, {"src": "assets/campaign-03.png", "alt": "Goodway Ramadan flyer", "label": "Goodway Ramadan flyer", "displayRatio": "1 / 1"}, {"src": "assets/campaign-04.png", "alt": "Naira40 Eid greeting", "label": "Naira40 Eid greeting", "displayRatio": "1 / 1"}, {"src": "assets/campaign-06.png", "alt": "Tang Sio FM promotional design", "label": "Tang Sio FM promotional design", "displayRatio": "1 / 1"}, {"src": "assets/campaign-07.png", "alt": "Waka Canada services flyer", "label": "Waka Canada services flyer", "displayRatio": "1 / 1"}, {"src": "assets/campaign-19.png", "alt": "Able Wears New Year greeting", "label": "Able Wears New Year greeting", "displayRatio": "1 / 1"}, {"src": "assets/campaign-10.png", "alt": "President-General Among the Nations book cover", "label": "President-General Among the Nations book cover", "displayRatio": "1 / 1"}, {"src": "assets/campaign-12.png", "alt": "Exoteric Property social post", "label": "Exoteric Property social post", "displayRatio": "1 / 1"}, {"src": "assets/campaign-11.png", "alt": "AbbyCreations clothing tag", "label": "AbbyCreations clothing tag", "displayRatio": "7 / 5"}, {"src": "assets/campaign-13.png", "alt": "Bakes by Hafsie packaging", "label": "Bakes by Hafsie packaging", "displayRatio": "7 / 5"}, {"src": "assets/campaign-17.png", "alt": "Best altcoins YouTube thumbnail", "label": "Best altcoins YouTube thumbnail", "displayRatio": "16 / 9"}, {"src": "assets/campaign-18.png", "alt": "Crypto coin research YouTube thumbnail", "label": "Crypto coin research YouTube thumbnail", "displayRatio": "16 / 9"}] };
+  const videoGallery = [{"title": "Video editing showcase 1", "src": "assets/portfolio-video-1.mp4", "poster": "assets/portfolio-video-1.jpg"}, {"title": "Video editing showcase 2", "src": "assets/portfolio-video-2.mp4", "poster": "assets/portfolio-video-2.jpg"}, {"title": "Video editing showcase 3", "src": "assets/portfolio-video-3.mp4", "poster": "assets/portfolio-video-3.jpg"}, {"title": "Video editing showcase 4", "src": "assets/portfolio-video-4.mp4", "poster": "assets/portfolio-video-4.jpg"}, {"title": "Video editing showcase 5", "src": "assets/portfolio-video-5.mp4", "poster": "assets/portfolio-video-5.jpg"}];
   const view = document.querySelector('#portfolio-view');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const viewer = document.querySelector('.image-viewer');
@@ -38,9 +39,22 @@
   function render() {
     const params = new URLSearchParams(location.search);
     const current = categories.some(c => c.id === params.get('category')) ? params.get('category') : 'brand-identity';
-    const project = projects.find(p => p.id === params.get('project') && p.category !== 'marketing');
+    const project = projects.find(p => p.id === params.get('project') && !['marketing', 'video-editing'].includes(p.category));
     activeProject = project || null;
-    if (current === 'marketing') {
+    if (current === 'video-editing') {
+      document.title = 'Video editing — My Works — Tijani Sulaimon';
+      view.innerHTML = `${categoryNav(current)}<section class="projects-section" aria-labelledby="collection-heading"><div class="collection-heading"><div><h2 id="collection-heading" tabindex="-1">Video editing</h2><p>Stories told through motion, rhythm and perspective.</p></div></div><div class="video-gallery">${videoGallery.map((video,i) => video.src ? `<div class="video-player"><video controls muted playsinline preload="metadata" aria-label="${escape(video.title)}" ${video.poster ? `poster="${escape(video.poster)}"` : ''} src="${escape(video.src)}"></video></div>` : `<div class="video-player video-coming-soon" role="img" aria-label="Video placeholder"><span class="video-placeholder-play" aria-hidden="true">▷</span><p>Video coming soon</p><span>Play / pause · Sound controls</span></div>`).join('')}</div></section>`;
+      view.querySelectorAll('.video-player video').forEach(video => {
+        const player = video.parentElement;
+        player.addEventListener('pointerenter', event => {
+          if (event.pointerType !== 'mouse' || reduced.matches) return;
+          view.querySelectorAll('.video-player video').forEach(other => { if (other !== video) other.pause(); });
+          video.play().catch(() => {});
+        });
+        player.addEventListener('pointerleave', event => { if (event.pointerType === 'mouse') video.pause(); });
+        video.addEventListener('play', () => view.querySelectorAll('.video-player video').forEach(other => { if (other !== video) other.pause(); }));
+      });
+    } else if (current === 'marketing') {
       activeProject = campaignGallery;
       document.title = 'Marketing & campaigns — My Works — Tijani Sulaimon';
       view.innerHTML = `${categoryNav(current)}<section class="projects-section" aria-labelledby="collection-heading"><div class="collection-heading"><div><h2 id="collection-heading" tabindex="-1">Marketing & campaigns</h2><p>Marketing and event flyers, book covers, YouTube thumbnails, carousel designs, and more.</p></div></div><div class="campaign-bento">${campaignGallery.assets.map((asset,i) => asset.src ? `<button class="campaign-tile gallery-image" style="--campaign-ratio:${asset.displayRatio}" data-image="${i}" aria-label="Enlarge ${escape(asset.label)}">${assetMarkup(campaignGallery,asset)}<span class="enlarge-label">View full size <span aria-hidden="true">+</span></span></button>` : `<div class="campaign-tile campaign-placeholder" role="img" aria-label="Campaign image placeholder"><span aria-hidden="true" class="campaign-placeholder-mark">+</span><span>Campaign imagery coming soon</span></div>`).join('')}</div></section>`;
@@ -106,6 +120,7 @@
     if (event.key==='ArrowRight' || event.key==='ArrowLeft') {event.preventDefault();stepImage(event.key==='ArrowRight'?1:-1);}
   });
   viewer.addEventListener('close',()=>{document.body.classList.remove('viewer-open');viewerTrigger?.focus({preventScroll:true});});
+  document.addEventListener('visibilitychange', () => { if (document.hidden) view.querySelectorAll('video').forEach(video => video.pause()); });
   window.addEventListener('popstate',()=>{if(viewer.open)viewer.close();render();});
   render();
 })();

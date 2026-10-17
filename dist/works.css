@@ -97,3 +97,12 @@ body.viewer-open{overflow:hidden}
 .campaign-bento .campaign-tile{min-width:0;width:100%;border-radius:12px;overflow:hidden;margin:0;aspect-ratio:var(--campaign-ratio,1);background:#151515}
 .campaign-bento .campaign-tile img{display:block;width:100%;height:100%;object-fit:cover}
 @media(max-width:600px){.campaign-bento{gap:12px}.campaign-bento .campaign-tile{border-radius:8px}.campaign-bento .enlarge-label{font-size:11px;padding:8px 10px}}
+
+.video-gallery{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.video-player{height:clamp(280px,50vw,640px);width:100%;position:relative;overflow:hidden;border-radius:12px;background:#151515;border:1px solid #292929}
+.video-player video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
+.video-coming-soon{display:flex;flex-direction:column;justify-content:center;align-items:center;color:#aaa;text-align:center;gap:14px}
+.video-placeholder-play{display:grid;place-items:center;width:72px;height:72px;border:1px solid #555;border-radius:50%;font-size:36px;color:#eee;padding-left:4px}
+.video-coming-soon p{font-size:20px;margin:8px 0 0;color:#eee}
+.video-coming-soon>span:last-child{font-size:13px;color:#888}
+@media(max-width:600px){.video-gallery{gap:20px}.video-player{height:260px;border-radius:8px}}
