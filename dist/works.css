@@ -106,3 +106,43 @@ body.viewer-open{overflow:hidden}
 .video-coming-soon p{font-size:20px;margin:8px 0 0;color:#eee}
 .video-coming-soon>span:last-child{font-size:13px;color:#888}
 @media(max-width:600px){.video-gallery{gap:20px}.video-player{height:260px;border-radius:8px}}
+
+/* A restrained lift and image reveal for project browsing. */
+.project-card{transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.project-cover{transition:box-shadow .45s ease}
+.project-cover > img{transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.project-card-meta h3{transition:color .25s ease}
+.project-open::after{content:"↗";display:inline-block;margin-left:10px}
+@media(hover:hover) and (pointer:fine){
+  .project-card:hover{transform:translateY(-5px)}
+  .project-card:hover .project-cover{box-shadow:0 16px 36px rgb(0 0 0 / 30%)}
+  .project-card:hover .project-cover > img{transform:scale(1.045)}
+  .project-card:hover .project-card-meta h3{color:#f2e84e}
+}
+.project-card:focus-visible .project-cover > img{transform:scale(1.045)}
+.project-card:focus-visible .project-card-meta h3{color:#f2e84e}
+@media(prefers-reduced-motion:reduce){
+  .project-card,.project-cover,.project-cover > img,.project-card-meta h3{transition:none}
+  .project-card:hover,.project-card:focus-visible,.project-card:hover .project-cover > img,.project-card:focus-visible .project-cover > img{transform:none}
+  .project-open{translate:none}
+}
+
+/* Carry the landing page's soft motion into collections and project galleries. */
+.gallery-image,.video-player{transition:scale .6s var(--motion-ease),box-shadow .6s var(--motion-ease)}
+@media(hover:hover) and (pointer:fine){
+  .gallery-image:hover{scale:.985;box-shadow:0 12px 32px rgb(0 0 0 / 25%)}
+  .video-player:hover{box-shadow:0 0 0 1px #666,0 12px 32px rgb(0 0 0 / 25%)}
+}
+.gallery-image:focus-visible{box-shadow:0 0 0 2px #f2e84e}
+@media(prefers-reduced-motion:reduce){
+  .gallery-image,.video-player{transition:none}
+  .gallery-image:hover{scale:1}
+}
+
+.video-play-button{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:80px;height:80px;padding:0;border:1px solid rgb(255 255 255 / 50%);border-radius:50%;background:rgb(245 245 239 / 92%);color:#111;box-shadow:0 4px 24px rgb(0 0 0 / 30%);transition:background .2s,scale .2s}
+.video-play-button svg{width:36px;height:36px}
+.video-play-button[hidden]{display:none}
+.video-play-button:hover{background:#f2e84e}
+.video-play-button:focus-visible{outline:3px solid #f2e84e;outline-offset:5px}
+@media(max-width:600px){.video-play-button{width:64px;height:64px}.video-play-button svg{width:30px;height:30px}}
+@media(prefers-reduced-motion:reduce){.video-play-button{transition:none}}
