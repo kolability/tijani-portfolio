@@ -79,7 +79,7 @@
 body.viewer-open{overflow:hidden}
 @media(max-width:1100px){#portfolio{padding:0 5vw}.project-layout{gap:32px;grid-template-columns:minmax(0,1fr)}.category-nav a{gap:12px;padding:10px 15px}.works-heading-row>p{font-size:15px}}
 @media(max-width:824px){.project-layout{grid-template-columns:1fr;gap:32px}.project-info{position:static}.project-info dl{max-width:500px}.project-info h1{font-size:52px}.project-note{margin-bottom:24px}.category-nav{position:static}.works-intro{padding-top:56px}.works-heading-row{display:block}.works-heading-row>p{margin:24px 0 0}.works-heading-row h1{font-size:72px}.project-open{opacity:1;translate:none}.project-cover .placeholder-caption{bottom:72px}.project-breadcrumb{padding-top:24px}}
-@media(max-width:600px){#portfolio{padding:0 22px}.works-intro{padding:48px 0 32px}.works-heading-row h1{font-size:62px}.category-nav{gap:8px;padding:16px 0}.category-nav a{padding:10px 14px;font-size:13px;gap:10px}.category-nav a span{font-size:11px}.collection-heading{margin-bottom:24px}.collection-heading h2{font-size:20px}.collection-total{display:none}.project-grid{grid-template-columns:1fr;gap:32px}.projects-section{padding:32px 0 56px}.project-cover{aspect-ratio:1.2}.placeholder-monogram{font-size:110px}.placeholder-corner{top:20px;left:20px}.placeholder-caption{left:20px;bottom:20px}.project-card-meta h3{font-size:22px}.project-info h1{font-size:44px}.project-layout{padding-bottom:48px}.project-gallery{gap:24px;grid-template-columns:1fr}.gallery-wide{grid-column:auto}.gallery-wide .gallery-image{aspect-ratio:1.2}.gallery-image{aspect-ratio:1}.enlarge-label{opacity:1}.collection-end{padding:32px 0 48px}.next-project strong{font-size:25px}.image-viewer{padding:16px;gap:16px}.viewer-controls{gap:16px}.viewer-toolbar p{font-size:13px}.viewer-close{padding:10px 14px}.viewer-close span{margin-left:8px}}
+@media(max-width:600px){#portfolio{padding:0 22px}.works-intro{padding:48px 0 32px}.works-heading-row h1{font-size:62px}.category-nav{gap:8px;padding:16px 0}.category-nav a{padding:10px 14px;font-size:13px;gap:10px}.category-nav a span{font-size:11px}.collection-heading{margin-bottom:24px}.collection-heading h2{font-size:20px}.collection-total{display:none}.project-grid{grid-template-columns:1fr;gap:32px}.projects-section{padding:32px 0 56px}.project-cover{aspect-ratio:1.2}.placeholder-monogram{font-size:110px}.placeholder-corner{top:20px;left:20px}.placeholder-caption{left:20px;bottom:20px}.project-card-meta h3{font-size:22px}.project-info h1{font-size:44px}.project-layout{padding-bottom:48px}.project-gallery{gap:24px;grid-template-columns:1fr}.gallery-wide{grid-column:auto}.gallery-wide .gallery-image{aspect-ratio:1.2}.gallery-image{aspect-ratio:1}.enlarge-label{display:none}.collection-end{padding:32px 0 48px}.next-project strong{font-size:25px}.image-viewer{padding:16px;gap:16px}.viewer-controls{gap:16px}.viewer-toolbar p{font-size:13px}.viewer-close{padding:10px 14px}.viewer-close span{margin-left:8px}}
 @media(prefers-reduced-motion:reduce){.project-open,.placeholder-monogram,.category-nav a,.enlarge-label{transition:none}}
 
 .project-cover > img{width:100%;height:100%;display:block;object-fit:cover}
@@ -92,11 +92,11 @@ body.viewer-open{overflow:hidden}
 
 .microbit-gallery .gallery-image.has-image.paired-image img{object-fit:contain}
 
-/* Pair campaigns by format in two consistent columns. */
+/* Pair campaigns on desktop and stack them on mobile. */
 .campaign-bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
 .campaign-bento .campaign-tile{min-width:0;width:100%;border-radius:12px;overflow:hidden;margin:0;aspect-ratio:var(--campaign-ratio,1);background:#151515}
 .campaign-bento .campaign-tile img{display:block;width:100%;height:100%;object-fit:cover}
-@media(max-width:600px){.campaign-bento{gap:12px}.campaign-bento .campaign-tile{border-radius:8px}.campaign-bento .enlarge-label{font-size:11px;padding:8px 10px}}
+@media(max-width:600px){.campaign-bento{grid-template-columns:minmax(0,1fr);gap:24px}.campaign-bento .campaign-tile{border-radius:8px;aspect-ratio:auto}.campaign-bento .campaign-tile img{height:auto;object-fit:contain}}
 
 .video-gallery{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
 .video-player{height:clamp(280px,50vw,640px);width:100%;position:relative;overflow:hidden;border-radius:12px;background:#151515;border:1px solid #292929}
