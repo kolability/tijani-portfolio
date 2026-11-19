@@ -146,3 +146,11 @@ body.viewer-open{overflow:hidden}
 .video-play-button:focus-visible{outline:3px solid #f2e84e;outline-offset:5px}
 @media(max-width:600px){.video-play-button{width:64px;height:64px}.video-play-button svg{width:30px;height:30px}}
 @media(prefers-reduced-motion:reduce){.video-play-button{transition:none}}
+
+/* Keep the Peaceway presentation in its numbered reading order. */
+.project-gallery.peaceway-gallery{grid-template-columns:minmax(0,1fr);gap:24px;max-width:1200px;width:100%;margin-inline:auto}
+.peaceway-gallery .gallery-item{grid-column:1/-1}
+.peaceway-gallery .gallery-image.has-image{aspect-ratio:auto}
+.peaceway-gallery .gallery-image.has-image img{height:auto;object-fit:contain}
+.peaceway-gallery .project-video{grid-column:1/-1;height:auto;aspect-ratio:16/9}
+@media(max-width:600px){.project-gallery.peaceway-gallery{gap:16px}}
